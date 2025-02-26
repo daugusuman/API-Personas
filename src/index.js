@@ -1,9 +1,12 @@
 import app from "./app.js"
+import { PORT } from "./configurations/config.js"
+import database from "./configurations/database.js"
 
 async function main() {
     try {
-        const server = app.listen(3000, () => {
-            console.log('[INFO] Servidor iniciado en http://localhost:3000')
+        await database.Connect()
+        const server = app.listen(PORT, () => {
+            console.log(`[INFO] Servidor iniciado en http://localhost:${PORT}`)
         })
     } catch (err) {
         console.error('[ERROR] Ha ocurrido un error al iniciar...', err)
